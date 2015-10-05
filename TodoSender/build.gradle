@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+ 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+     }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+dependencies {
+    testCompile("junit:junit") 
+    compile("org.projectlombok:lombok:1.16.6")
+        
+        // Spring Boot
+    compile("org.springframework.boot:spring-boot-autoconfigure")
+    compile("org.springframework.boot:spring-boot-starter-web"){
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty") 
+    compile("org.springframework.boot:spring-boot-starter-actuator") 
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'com.h2database:h2:1.4.188'
+    
+    //google
+    compile 'com.google.apis:google-api-services-gmail:v1-rev32-1.20.0'
+    compile 'javax.mail:mail:1.4.7' 
+
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.6'
+}
+
+

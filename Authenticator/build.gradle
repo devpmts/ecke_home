@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+ 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+     }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+dependencies {
+    testCompile("junit:junit") 
+    compile("org.projectlombok:lombok:1.16.6")
+        
+        // Spring Boot
+    compile("org.springframework.boot:spring-boot-autoconfigure")
+    compile("org.springframework.boot:spring-boot-starter-web"){
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty") 
+    compile("org.springframework.boot:spring-boot-starter-actuator") 
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'com.h2database:h2:1.4.188'
+
+
+    // web
+    compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+    compile 'org.apache.taglibs:taglibs-standard-jstlel:1.2.1'
+
+    // security
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.7.RELEASE'
+
+
+    // utilities
+    compile("joda-time:joda-time:2.1")
+    
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.6'
+}
+
+
